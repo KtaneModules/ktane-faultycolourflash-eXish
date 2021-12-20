@@ -69,6 +69,8 @@ public class FaultyColourFlashScript : MonoBehaviour {
         List<string> mods = bomb.GetModuleNames();
         if (Application.isEditor && mods.Count == 0)
             mods.Add("Faulty Colour Flash");
+        else if (!Application.isEditor && mods.Count != 1)
+            mods.Remove("Faulty Colour Flash");
         for (int mod = 0; mod < mods.Count; mod++)
         {
             for (int i = 0; i < 26; i++)
@@ -87,23 +89,23 @@ public class FaultyColourFlashScript : MonoBehaviour {
             }
         }
         redo:
-        if (modPresence.Contains(false))
+        if (modPresence.Contains(false) && modPresence.Contains(true))
         {
             for (int i = 0; i < 4; i++)
             {
-                int rando = UnityEngine.Random.Range(0, 2);
+                int rando = Random.Range(0, 2);
                 if (rando == 0)
                 {
-                    int choice = UnityEngine.Random.Range(0, 26);
+                    int choice = Random.Range(0, 26);
                     while (modPresence[choice] == true)
-                        choice = UnityEngine.Random.Range(0, 26);
+                        choice = Random.Range(0, 26);
                     chosenLetters.Add(alphabet[choice]);
                 }
                 else
                 {
-                    int choice = UnityEngine.Random.Range(0, 26);
+                    int choice = Random.Range(0, 26);
                     while (modPresence[choice] == false)
-                        choice = UnityEngine.Random.Range(0, 26);
+                        choice = Random.Range(0, 26);
                     chosenLetters.Add(alphabet[choice]);
                 }
             }
@@ -111,7 +113,7 @@ public class FaultyColourFlashScript : MonoBehaviour {
         else
         {
             for (int i = 0; i < 4; i++)
-                chosenLetters.Add(alphabet[UnityEngine.Random.Range(0, 26)]);
+                chosenLetters.Add(alphabet[Random.Range(0, 26)]);
         }
         chosenLetters = chosenLetters.Shuffle();
         int[] nums = new int[8];
@@ -121,15 +123,15 @@ public class FaultyColourFlashScript : MonoBehaviour {
             int index = chosenLetters[i / 2] - 65;
             if (tapCode[index] == 0)
             {
-                int rando = UnityEngine.Random.Range(0, 2);
+                int rando = Random.Range(0, 2);
                 if (rando == 0)
                 {
                     nums[i] = 0;
-                    nums[i + 1] = UnityEngine.Random.Range(0, 6);
+                    nums[i + 1] = Random.Range(0, 6);
                 }
                 else
                 {
-                    nums[i] = UnityEngine.Random.Range(0, 6);
+                    nums[i] = Random.Range(0, 6);
                     nums[i + 1] = 0;
                 }
             }
@@ -149,7 +151,7 @@ public class FaultyColourFlashScript : MonoBehaviour {
         redo2:
         for (int i = 0; i < 8; i++)
         {
-            int rando = UnityEngine.Random.Range(0, 2);
+            int rando = Random.Range(0, 2);
             if ((nums[i] == 2 && rando == 0) || nums[i] > 3)
                 fasterSpeed[i] = true;
         }
@@ -207,8 +209,8 @@ public class FaultyColourFlashScript : MonoBehaviour {
     int[] GetPuzzleColours(int dif)
     {
         redo:
-        int choice1 = UnityEngine.Random.Range(0, 6);
-        int choice2 = UnityEngine.Random.Range(0, 6);
+        int choice1 = Random.Range(0, 6);
+        int choice2 = Random.Range(0, 6);
         int check = 0;
         for (int i = 0; i < 3; i++)
         {
