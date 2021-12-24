@@ -25,11 +25,11 @@ MonoBehaviour:
     PDF: https://ktane.timwi.de/PDF/Faulty%20Colour%20Flash.pdf
 
 
-    Faulty Colour Flash (faultyColourFlashModule) v1.0.2
+    Faulty Colour Flash (faultyColourFlashModule) v1.0.3
 
     Module and Concept by eXish
 
     Twitch Plays supported'
-  version: 1.0.2
+  version: 1.0.3
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 5fbfee94f567e7e42bbb53ef2ca49fa1, type: 3}
